@@ -11,9 +11,9 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd">
         
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-		<property name="url" value="jdbc:mysql://172.19.20.2:3309/gw2_dianquan?useUnicode=true&amp;characterEncoding=UTF-8"/>
-		<property name="username" value="admin"/>
-		<property name="password" value="JMMKbFcCDH"/>
+		<property name="url" value="jdbc:mysql://12.1.1.1:3309/gw2_dianquan?useUnicode=true&amp;characterEncoding=UTF-8"/>
+		<property name="username" value="2323"/>
+		<property name="password" value="erwerwe"/>
 		<property name="initialSize" value="1"/>
 		<property name="minIdle" value="1"/>
 		<property name="maxActive" value="20"/>
