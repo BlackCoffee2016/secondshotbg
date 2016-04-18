@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="webservice" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+		<property name="serviceInterface" value="com.kongzhong.external.webservice.generate.GWWSPortType" />
+		<property name="wsdlDocumentUrl" value="http://webservice-stage.kongzhong.com/PassportWebService/services/GWWS?wsdl" />
+		<property name="namespaceUri" value="http://WSInterface.project.sin.com" />
+		<property name="serviceName" value="GWWS" />
+		<property name="portName" value="GWWSHttpPort" />
+	</bean>
+	<bean id="logWebService" class="com.kongzhong.gw2.secondshotbg.service.LogWebService"/>
+	<bean class="com.kongzhong.external.webservice.WebserviceClient">
+		<property name="webservice" ref="webservice" />
+		<property name="storage" ref="logWebService"/>
+	</bean>
+	
+	<bean class="com.kongzhong.external.webservice.Gw2Webservice">
+		<property name="gw2WebserviceUrl" value="http://10.230.10.26:1954/" />
+	</bean>
+	
+</beans>

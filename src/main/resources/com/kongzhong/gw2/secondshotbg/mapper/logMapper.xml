@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongzhong.gw2.secondshotbg.mapper.WebserviceLogMapper">
+
+      <insert id="saveWebServiceLog" parameterType="WebServiceLog">
+           insert into t_gw2_mp_webservice_log(logtime,username,method,params,result,orderid) values (now(),#{userName},#{method},#{params},#{result},#{orderId})
+      </insert>
+
+</mapper>

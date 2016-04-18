@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongzhong.gw2.secondshotbg.mapper.OrderMapper">
+
+     <!-- 根据订单号查询出一条订单信息 -->
+     <select id="getOrderByOrderId" parameterType="java.lang.String" resultType="Order">
+          SELECT
+            orderid orderId,
+			account,
+			createdate createDate,
+			price,
+			termid termId,
+			count,
+			STATUS,
+			ip,
+			lastupdatetime lastUpdateTime,
+			cdkeytype cdkeyType,
+			paytype payType
+		 FROM
+			t_gw2_mp_order
+		 WHERE
+			orderid = #{orderId}
+     </select>
+     
+     <update id="updateOrder" parameterType="java.util.Map">
+         UPDATE t_gw2_mp_order
+           <set>
+              <if test="payType!=0">paytype=#{payType},</if>
+              <if test="status!=null">STATUS=#{status},</if>
+              <if test="time!=null">lastupdatetime=now()</if>
+           </set>
+         WHERE orderid=#{orderId}
+     </update>
+     
+</mapper>

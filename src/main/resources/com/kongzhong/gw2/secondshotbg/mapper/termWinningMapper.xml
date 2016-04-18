@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongzhong.gw2.secondshotbg.mapper.TermWinningMapper">
+    <insert id="addTermWinning" parameterType="Winning">
+         INSERT INTO t_gw2_mp_winning (
+			account,
+			termid,
+			itemname,
+			ip,
+			cdkey,
+			orderid,
+			createdatetime
+		)
+		VALUES
+			(
+				#{account},#{termId},#{itemName},#{ip},#{cdkey},#{orderId},now())
+    </insert>
+    
+    <select id="getIsWinning" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+			count(*)
+		FROM
+			t_gw2_mp_winning
+		WHERE
+			account = #{account}
+		AND itemname = #{itemName}
+    </select>
+    
+     <!-- 查询出没有获取到CDKEY的订单号 -->
+     <select id="getNoCdkey" resultType="java.lang.String">
+          SELECT
+			orderid
+		FROM
+			t_gw2_mp_winning
+		WHERE
+			cdkey = 'nocdkey'
+     </select>
+    
+     <update id="updateCdkey" parameterType="java.util.Map">
+         UPDATE 
+            t_gw2_mp_winning
+         SET
+            cdkey=#{cdkey}
+         WHERE
+            orderid=#{orderId}
+     </update>
+    
+    
+</mapper>

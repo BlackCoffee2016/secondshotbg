@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongzhong.gw2.secondshotbg.mapper.TermMapper">
+
+    <select id="getTermById" parameterType="java.lang.Integer" resultType="Term">
+       select id,servings,auctionservings auctionServings,price,itemid itemId,number,st from t_gw2_mp_term where id=#{id}
+    </select>
+     
+    <select id="getTermByItemId" parameterType="java.lang.Integer" resultType="Term">
+      <![CDATA[
+       select id,servings,auctionservings auctionServings,price,itemid itemId,number,st from t_gw2_mp_term 
+       where itemid=#{itemId} and auctionservings < servings limit 1
+      ]]>
+    </select> 
+    
+    <update id="updateTermById" parameterType="java.util.Map">
+      <![CDATA[
+        update t_gw2_mp_term 
+         set auctionServings=auctionServings+#{limit} 
+         where id=#{termId} and auctionServings+#{limit,jdbcType=INTEGER}<=servings
+      ]]>
+    </update>
+    
+    <insert id="insertTerm" parameterType="Term" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_gw2_mp_term (
+            id,
+			servings,
+			auctionservings,
+			price,
+			itemid,
+			number,
+			st,
+			createdatetime
+		)
+		VALUES
+			(#{id},#{servings},#{auctionServings},#{price},#{itemId},#{number},#{st},now())
+    </insert>
+</mapper>

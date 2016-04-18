@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongzhong.gw2.secondshotbg.mapper.TermDetailedMapper">
+
+     <update id="updateTermDetailedByLimit" parameterType="TermDetailed">
+         UPDATE t_gw2_mp_term_detailed
+          set createdatetime=now(),username=#{userName},count=#{count},orderid=#{orderId},ip=#{ip}
+         WHERE termid=#{termId} and username is null limit #{limit}
+     </update>
+     
+     <select id="getCountByTermId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+          select count(*) from t_gw2_mp_term_detailed where termid=#{termId}
+     </select>
+     
+     
+     <insert id="insertTermDetailed" parameterType="TermDetailed">
+          INSERT INTO t_gw2_mp_term_detailed (
+				termid,
+				keynumber,
+				username,
+				count,
+				orderid,
+				ip,
+				createdatetime,
+				itemid
+		   )
+		   VALUES
+				(
+					#{termId},#{keyNumber},#{userName},#{count},#{orderId},#{ip},now(),#{itemId})
+     </insert>
+     
+     <select id="getTermDetailedByTermIdAndKey" parameterType="java.util.Map" resultType="TermDetailed">
+         select termid termId,keynumber keyNumber,username userName,count,orderid orderId,ip from t_gw2_mp_term_detailed
+          where termid=#{termId} and keynumber=#{keyNumber}
+     </select>
+     
+     <select id="getNotWinningTermDetailed" parameterType="java.util.Map" resultType="TermDetailed">
+         select termid termId,keynumber keyNumber,username userName,count,orderid orderId,ip from t_gw2_mp_term_detailed
+          where termid=#{termId} and username!=#{account}
+     </select>
+</mapper>

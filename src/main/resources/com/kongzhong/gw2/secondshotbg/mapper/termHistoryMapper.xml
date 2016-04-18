@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kongzhong.gw2.secondshotbg.mapper.TermHistoryMapper">
+
+     <insert id="addTermHistory" parameterType="TermHistory">
+         INSERT INTO t_gw2_mp_history (
+			orderid,
+			termid,
+			itemname,
+			count,
+			price,
+			orderdate,
+			termdate,
+			account
+		)
+		VALUES
+			(#{orderId},#{termId},#{itemName},#{count},#{price},#{orderDate},#{termDate},#{account})
+     </insert>
+     
+</mapper>

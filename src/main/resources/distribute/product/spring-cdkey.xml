@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="cdkey" class="com.kongzhong.gw2.secondshotbg.service.CdkeyTypeService">
+	   <property name="map">
+	            <map>
+		          <entry key="1" value-ref="map1"/>
+		          <entry key="2" value-ref="map2"/>
+		          <entry key="3" value-ref="map3"/>
+		       </map>
+	   </property>
+	</bean>
+	<bean id="map1" class="com.kongzhong.gw2.secondshotbg.domain.Cdkey">
+       <property name="batchId" value="1142"/>
+       <property name="batchCode" value="74F97C11DF989FE1A0AA04EA18B2D54B"/>
+    </bean>
+    <bean id="map2" class="com.kongzhong.gw2.secondshotbg.domain.Cdkey">
+       <property name="batchId" value="1143"/>
+       <property name="batchCode" value="464F6AA06752022A136BFF1912792310"/>
+    </bean>
+    <bean id="map3" class="com.kongzhong.gw2.secondshotbg.domain.Cdkey">
+       <property name="batchId" value="1144"/>
+       <property name="batchCode" value="F5FCF65B2F707A5B2EBEA45468CA6A2A"/>
+    </bean>
+	
+</beans>
